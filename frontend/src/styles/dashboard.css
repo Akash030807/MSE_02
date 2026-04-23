@@ -1,0 +1,85 @@
+/* Full page background */
+.dashboard-container {
+  min-height: 100vh;
+  background: #0f172a;
+  color: #e2e8f0;
+  padding: 20px;
+}
+
+/* Header */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+/* Card (form + items) */
+.dashboard-card {
+  background: #1e293b;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+  margin-bottom: 20px;
+}
+
+/* Inputs */
+.dashboard-card input {
+  background: #0f172a;
+  border: 1px solid #334155;
+  color: white;
+  border-radius: 8px;
+}
+
+/* Buttons */
+.dashboard-btn {
+  background: #3b82f6;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  width: 100%;
+}
+
+.dashboard-btn:hover {
+  background: #2563eb;
+}
+
+/* Item cards */
+.item-card {
+  background: #1e293b;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 10px;
+  transition: 0.2s;
+}
+
+.item-card:hover {
+  transform: scale(1.02);
+}
+
+/* Delete button */
+.delete-btn {
+  background: #ef4444;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* Logout */
+.logout-btn {
+  background: #f59e0b;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  color: white;
+}
+
+.logout-btn:hover {
+  background: #d97706;
+}

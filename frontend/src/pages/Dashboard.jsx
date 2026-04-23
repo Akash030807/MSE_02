@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import API from "../services/api";
+import "../styles/dashboard.css";
 
 export default function Dashboard() {
   const [items, setItems] = useState([]);
@@ -20,6 +21,7 @@ export default function Dashboard() {
   const addItem = async (e) => {
     e.preventDefault();
     await API.post("/items", form);
+    setForm({});
     fetchItems();
   };
 
@@ -29,37 +31,68 @@ export default function Dashboard() {
   };
 
   return (
-    <div className="container mt-5">
-      <h2>Dashboard</h2>
+    <div className="dashboard-container">
 
-      <button className="btn btn-danger mb-3"
-        onClick={() => {
-          localStorage.removeItem("token");
-          window.location.href = "/login";
-        }}>
-        Logout
-      </button>
+      {/* Header */}
+      <div className="dashboard-header">
+        <h2>Lost & Found Dashboard</h2>
+        <button
+          className="logout-btn"
+          onClick={() => {
+            localStorage.removeItem("token");
+            window.location.href = "/login";
+          }}
+        >
+          Logout
+        </button>
+      </div>
 
-      <form onSubmit={addItem}>
-        <input className="form-control my-2" placeholder="Item Name"
-          onChange={e => setForm({...form, itemName: e.target.value})}/>
-        <input className="form-control my-2" placeholder="Description"
-          onChange={e => setForm({...form, description: e.target.value})}/>
-        <button className="btn btn-primary">Add Item</button>
-      </form>
+      {/* Add Item Form */}
+      <div className="dashboard-card">
+        <h4>Add Item</h4>
 
-      <hr />
+        <form onSubmit={addItem}>
+          <input
+            className="form-control my-2"
+            placeholder="Item Name"
+            value={form.itemName || ""}
+            onChange={(e) =>
+              setForm({ ...form, itemName: e.target.value })
+            }
+          />
 
-      {items.map(item => (
-        <div key={item._id} className="card p-3 my-2">
-          <h5>{item.itemName}</h5>
-          <p>{item.description}</p>
-          <button className="btn btn-danger"
-            onClick={() => deleteItem(item._id)}>
-            Delete
-          </button>
-        </div>
-      ))}
+          <input
+            className="form-control my-2"
+            placeholder="Description"
+            value={form.description || ""}
+            onChange={(e) =>
+              setForm({ ...form, description: e.target.value })
+            }
+          />
+
+          <button className="dashboard-btn">Add Item</button>
+        </form>
+      </div>
+
+      {/* Items List */}
+      <div className="dashboard-card">
+        <h4>All Items</h4>
+
+        {items.map((item) => (
+          <div key={item._id} className="item-card">
+            <h5>{item.itemName}</h5>
+            <p>{item.description}</p>
+
+            <button
+              className="delete-btn"
+              onClick={() => deleteItem(item._id)}
+            >
+              Delete
+            </button>
+          </div>
+        ))}
+      </div>
+
     </div>
   );
 }
